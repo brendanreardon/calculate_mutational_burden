@@ -84,10 +84,8 @@ class Burden(reader):
         return df.columns.tolist()[0]
 
     @staticmethod
-    def count_variants(df_list):
-        count = 0
-        for df in df_list:
-            count += df.shape[0]
+    def count_variants(df):
+        count = df.shape[0]
         return count
 
     @staticmethod
@@ -112,8 +110,8 @@ class Burden(reader):
 
         df = pd.Series(index = _cols)
         df['patient_id'] = patient['patient_id']
-        df['tumor_sample_barcode'] = variants[0]['tumor_sample_barcode'].unique().tolist()[0]
-        df['normal_sample_barcode'] = variants[0]['normal_sample_barcode'].unique().tolist()[0]
+        df['tumor_sample_barcode'] = variants['tumor_sample_barcode'].unique().tolist()[0]
+        df['normal_sample_barcode'] = variants['normal_sample_barcode'].unique().tolist()[0]
         df['number_coding_variants'] = number_variants
         df['somatic_bases_covered'] = somatic_bases
         df['coding_mutations_per_Mb'] = burden
