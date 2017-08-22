@@ -1,12 +1,16 @@
 # calculate_mutational_burden
 A lightweight python script to calculate coding mutational burden. 
 
-## Using calculate_mutational_burden
-Please edit wrapper.sh to include the following details for your given sample
-- patient_id: An individual ID for the sample being considered
-- snv_handle: Path to a MAF file containing single nucleotide variants
-- indel_handle: Path to a MAF file containing insertion or deletion variants
-- coverage_handle: Path to text file containing only the number of somatic bases covered
+## Run calculate_mutational_burden
+calc_mutburden.py can be run by either editing the wrapper.sh or directly from python. Please edit wrapper.sh or run to include the following details for your given sample
+- `patient_id`: An individual ID for the sample being considered
+- `snv_handle`: Path to a MAF file containing single nucleotide variants
+- `indel_handle`: Path to a MAF file containing insertion or deletion variants
+- `coverage_handle`: Path to text file containing only the number of somatic bases covered
+
+Example:
+
+`python calc_mutburden.py -patient_id HCC1143 -snv /path/to/snvs.maf -indel /path/to/indels.maf -coverage /path/to/coverage.txt`
 
 Given MAF files should follow the [specifications detailed by the NCI](https://wiki.nci.nih.gov/display/TCGA/Mutation+Annotation+Format+(MAF)+Specification). The following variant classifications considered to be coding, and thus are used in the calculation of mutational burden: 
 - Missense_Mutation
