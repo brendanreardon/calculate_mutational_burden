@@ -54,8 +54,8 @@ class SNVIndel(reader):
 
     @classmethod
     def append_coverage(cls, df):
-        df[cls.cov_col] = df[cls.alt_count_col].astype(int) + df[cls.ref_count_col].astype(int)
-        df[cls.af_col] = df[cls.alt_count_col].astype(int) / df[cls.cov_col].astype(int)
+        df[cls.cov_col] = df[cls.alt_count_col].astype(float) + df[cls.ref_count_col].astype(float)
+        df[cls.af_col] = df[cls.alt_count_col].astype(float) / df[cls.cov_col].astype(float)
         df[cls.af_col] = df[cls.af_col].round(3)
         return df
 
