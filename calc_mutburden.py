@@ -40,7 +40,11 @@ df_variants = pd.concat(patient_variants, ignore_index = True)
 df_filtered = pd.concat(filtered_variants, ignore_index = True)
 
 if os.path.exists(patient['coverage_handle']):
-    patient_burden = Burden.run_burden(df_variants, patient)
+    patient_burden_series = Burden.run_burden(df_variants, patient)
+    burden = Burden.extract_burden(patient_burden_series)
 
-    output_name = patient['patient_id'] + '.mutational_burden.txt'
-    writer.export_series(patient_burden, output_name)
+    output_name = '.'.join([patient['patient_id'], 'mutational_burden.txt'])
+    writer.export_series(patient_burden_series, output_name)
+
+    output_name = '.'.join([patient['patient_id'], 'mutational_burden.value.txt'])
+    writer.export_float(burden, output_name)

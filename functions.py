@@ -101,6 +101,10 @@ class Burden(reader):
         return number_variants, mutations_per_Mb
 
     @classmethod
+    def extract_burden(cls, series):
+        return float(series['coding_mutations_per_Mb'])
+
+    @classmethod
     def run_burden(cls, variants, patient):
         somatic_bases = cls.import_burden(patient['coverage_handle'])
         number_variants, burden = cls.calculate_burden(variants, somatic_bases)
@@ -121,3 +125,9 @@ class writer(object):
     @staticmethod
     def export_series(df, output_name):
         df.to_csv(output_name, sep = '\t', index = True)
+
+    @staticmethod
+    def export_float(value, outname):
+        f = open(outname, "w+")
+        f.write(str(value))
+        f.close()
