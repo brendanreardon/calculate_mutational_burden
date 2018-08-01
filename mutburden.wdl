@@ -13,6 +13,12 @@ workflow calculateMutationalBurden {
     
     output  {
         calculateMutationalBurdenTask.mutational_burden
+        calculateMutationalBurdenTask.mutational_burden_value
+    }
+
+    meta {
+        author: "Brendan Reardon"
+        email: "breardon@broadinstitute.org"
     }
 }
 
@@ -28,10 +34,11 @@ task calculateMutationalBurdenTask {
 
     output  {
         File mutational_burden="${patientId}.mutational_burden.txt"
+        File mutational_burden_value=read_string("${patientId}.mutational_burden.value.txt")
     }
 
     runtime {
-        docker: "breardon/calc_mutational_burden:1.1"
+        docker: "breardon/calc_mutational_burden:1.1.1"
         memory: "1 GB"
     }
 }
